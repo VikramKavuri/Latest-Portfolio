@@ -4,16 +4,7 @@ import SkillRadarChart from '../illustrations/SkillRadarChart';
 import { ScrollReveal, ParallaxLayer } from '../effects/ScrollReveal';
 import { SpotlightCard } from '../effects/SpotlightCard';
 import { TextShimmer } from '../effects/TextShimmer';
-import RotatingBullets from '../effects/RotatingBullets';
-
-const ABOUT_BULLETS = [
-  'Unique blend of data engineering execution and analytics delivery, backed by formal ML coursework.',
-  'Ripped out legacy retail systems at Accenture and migrated them to cloud. Nothing broke.',
-  'Built HIPAA-grade data pipelines in healthcare where one bad record means audit.',
-  "I don't just query data. I build the warehouse, the pipelines, the models, and the dashboards people actually open.",
-  'Fluent in Python, Spark, Airflow, Snowflake, SQL, AWS, and AI/ML.',
-  'Turns stakeholder requirements into self-serve analytics and KPI frameworks.',
-];
+import { WhatIDo } from '../effects/WhatIDo';
 
 export default function AboutPage() {
   return (
@@ -34,7 +25,13 @@ export default function AboutPage() {
       </ScrollReveal>
 
       <ScrollReveal delay={0.1}>
-        <RotatingBullets bullets={ABOUT_BULLETS} interval={4000} className="mb-10" />
+        <div className="mt-8 mb-10">
+          <h3 className="font-display text-2xl md:text-3xl font-light tracking-tight text-navy mb-4">
+            <TextShimmer as="span">What I Do</TextShimmer>
+          </h3>
+          <div className="gold-line w-10 mb-6" />
+          <WhatIDo />
+        </div>
       </ScrollReveal>
 
       <ScrollReveal delay={0.2}>

@@ -3,6 +3,8 @@ import { SplineScene } from '../ui/splite';
 import { Spotlight } from '../ui/spotlight';
 import { ArrowRight, Github, Linkedin, MapPin } from 'lucide-react';
 import RollingBullets from '../ui/RollingBullets';
+import { SkillBadges } from '../effects/SkillBadges';
+import JobMatchAnalyzer from '../JobMatchAnalyzer';
 
 /* ────────────────────────────────────────────
    Animated text reveal — staggered word reveal
@@ -30,7 +32,6 @@ function AnimatedText({ text, className, delay = 0 }) {
 
 /* ────────────────────────────────────────────
    Floating particles background
-   Subtle geometric shapes drifting in the dark
    ──────────────────────────────────────────── */
 function FloatingParticlesBg() {
   const particles = useRef(
@@ -88,6 +89,7 @@ function LoadingOverlay({ isLoading }) {
 
 /* ────────────────────────────────────────────
    Main Hero Scene — Spline 3D + Split Layout
+   Responsive: adapts to mobile / tablet / desktop
    ──────────────────────────────────────────── */
 export default function HeroScene({ onOpenBook }) {
   const [fadeOut, setFadeOut] = useState(false);
@@ -96,7 +98,6 @@ export default function HeroScene({ onOpenBook }) {
 
   const handleSplineLoad = useCallback(() => {
     setSplineLoaded(true);
-    // Stagger the content reveal after scene loads
     setTimeout(() => setContentReady(true), 300);
   }, []);
 
@@ -120,7 +121,7 @@ export default function HeroScene({ onOpenBook }) {
 
   return (
     <div
-      className="relative w-full min-h-screen overflow-hidden"
+      className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto"
       style={{
         opacity: fadeOut ? 0 : 1,
         transition: 'opacity 0.7s ease-out',
@@ -130,13 +131,11 @@ export default function HeroScene({ onOpenBook }) {
       {/* Loading overlay */}
       <LoadingOverlay isLoading={!splineLoaded} />
 
-      {/* Spotlight effect */}
+      {/* Spotlight effects */}
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="#D4A843"
       />
-
-      {/* Secondary subtle spotlight */}
       <Spotlight
         className="-top-40 right-0 md:right-60 md:-top-20"
         fill="#8BA4C4"
@@ -149,126 +148,140 @@ export default function HeroScene({ onOpenBook }) {
       <div className="absolute inset-0 bg-gradient-to-r from-[#F4F5FA]/90 via-transparent to-transparent z-[2] pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F4F5FA] to-transparent z-[2] pointer-events-none" />
 
-      {/* Main content — split layout */}
-      <div className="relative z-10 flex min-h-screen">
+      {/* Main content — split layout on desktop, stacked on mobile */}
+      <div className="relative z-10 flex flex-col md:flex-row min-h-screen">
+
         {/* ─── Left: Text content ─── */}
-        <div className="flex-1 flex flex-col justify-center px-5 sm:px-8 md:px-16 lg:px-20 relative z-10">
+        <div className="flex-1 flex flex-col justify-center px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-14 pb-6 sm:pt-16 sm:pb-8 md:py-8 relative z-10">
+
           {/* Status badge */}
           <div
             className={`transition-all duration-700 delay-300 ${
               contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 border border-black/15 bg-black/5">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 py-1 sm:px-3 sm:py-1.5 mb-2 sm:mb-3 border border-black/15 bg-black/5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-xs font-body text-black/60 tracking-wider uppercase">
+              <span className="text-[10px] sm:text-xs font-body text-black/60 tracking-wider uppercase">
                 Open to opportunities
               </span>
             </div>
           </div>
 
-          {/* Name */}
-          <div className="mb-2">
+          {/* Name — scales with viewport */}
+          <div className="mb-0">
             <AnimatedText
               text="VIKRAM"
-              className="block font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-tight"
+              className="block font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-none"
               delay={contentReady ? 400 : 99999}
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-1.5 sm:mb-2">
             <AnimatedText
               text="KAVURI"
-              className="block font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black/85 leading-tight"
+              className="block font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black/85 leading-none"
               delay={contentReady ? 550 : 99999}
             />
           </div>
 
-          {/* Gold divider — animated flowing line */}
+          {/* Gold divider */}
           <div
-            className={`h-[2px] w-64 md:w-80 mb-6 transition-all duration-1000 delay-700 gold-line-flow ${
+            className={`h-[2px] w-32 sm:w-48 md:w-64 lg:w-80 mb-1.5 sm:mb-2 transition-all duration-1000 delay-700 gold-line-flow ${
               contentReady
                 ? 'opacity-100 scale-x-100'
                 : 'opacity-0 scale-x-0'
             } origin-left`}
           />
 
-          {/* Title */}
+          {/* Title + Location */}
           <div
             className={`transition-all duration-700 delay-[800ms] ${
               contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <p className="font-body text-lg md:text-xl text-black/70 tracking-wide mb-2">
+            <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-black/70 tracking-wide mb-0.5">
               Data Analytics Engineer
             </p>
-            <div className="flex items-center gap-2 text-black/45 mb-8">
-              <MapPin size={14} />
-              <span className="text-sm font-body">Buffalo, NY</span>
+            <div className="flex items-center gap-1.5 text-black/45 mb-1.5 sm:mb-2">
+              <MapPin size={12} className="sm:w-[14px] sm:h-[14px]" />
+              <span className="text-[11px] sm:text-xs md:text-sm font-body">Buffalo, NY</span>
             </div>
           </div>
 
-          {/* Rolling Bullet Titles */}
+          {/* Rolling Bullet Titles — "I Will" section */}
           <div
-            className={`transition-all duration-700 delay-[1000ms] mb-10 ${
+            className={`transition-all duration-700 delay-[1000ms] mb-1.5 sm:mb-2 ${
               contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
             <RollingBullets isReady={contentReady} />
           </div>
 
-          {/* CTA + Social links */}
+          {/* Domain Expertise Badges — centered flex-wrap */}
           <div
-            className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 transition-all duration-700 delay-[1200ms] ${
+            className={`transition-all duration-700 delay-[1100ms] mb-1.5 sm:mb-2 ${
+              contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            <SkillBadges />
+          </div>
+
+          {/* CTA + Social links + Job Fit Analyzer */}
+          <div
+            className={`flex flex-row flex-wrap items-center gap-2 sm:gap-3 transition-all duration-700 delay-[1200ms] ${
               contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
             <button
               onClick={handleOpenBook}
-              className="group flex items-center gap-3 px-6 py-3 bg-black text-white font-body font-semibold text-sm tracking-wide hover:bg-black/85 transition-all duration-300 hover:shadow-lg hover:shadow-black/15"
+              className="group flex items-center gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 bg-black text-white font-body font-semibold text-[11px] sm:text-xs md:text-sm tracking-wide hover:bg-black/85 transition-all duration-300 hover:shadow-lg hover:shadow-black/15"
             >
               Open Portfolio
               <ArrowRight
-                size={16}
+                size={13}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </button>
 
-            <div className="flex items-center gap-3 ml-1">
+            {/* Job Fit Analyzer — opens as drawer overlay */}
+            <JobMatchAnalyzer />
+
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <a
                 href="https://github.com/vikramkavuri"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-black/40 hover:text-black transition-colors duration-300"
+                className="p-1 sm:p-1.5 text-black/40 hover:text-black transition-colors duration-300"
                 aria-label="GitHub"
               >
-                <Github size={18} />
+                <Github size={15} className="sm:w-4 sm:h-4" />
               </a>
               <a
                 href="https://linkedin.com/in/vikramkavuri"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-black/40 hover:text-black transition-colors duration-300"
+                className="p-1 sm:p-1.5 text-black/40 hover:text-black transition-colors duration-300"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={18} />
+                <Linkedin size={15} className="sm:w-4 sm:h-4" />
               </a>
             </div>
           </div>
 
           {/* Scroll indicator */}
           <div
-            className={`absolute bottom-8 left-5 sm:left-8 md:left-16 lg:left-20 flex items-center gap-2 transition-all duration-700 delay-[1500ms] ${
+            className={`flex items-center gap-2 mt-2 sm:mt-3 transition-all duration-700 delay-[1500ms] ${
               contentReady ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <div className="w-px h-8 bg-gradient-to-b from-transparent via-gold to-transparent" />
-            <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase gold-shimmer-text" style={{ filter: 'brightness(0.75) contrast(1.3)' }}>
+            <div className="w-px h-4 sm:h-5 bg-gradient-to-b from-transparent via-gold to-transparent" />
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-body font-semibold tracking-[0.2em] uppercase gold-shimmer-text" style={{ filter: 'brightness(0.75) contrast(1.3)' }}>
               Scroll to explore
             </span>
           </div>
         </div>
 
-        {/* ─── Right: Spline 3D Scene ─── */}
+        {/* ─── Right: Spline 3D Scene (desktop only) ─── */}
         <div className="flex-1 relative hidden md:block">
           <div
             className={`w-full h-full transition-all duration-1000 delay-200 ${
@@ -282,7 +295,7 @@ export default function HeroScene({ onOpenBook }) {
             />
           </div>
 
-          {/* Gradient edge blending — all sides to hide 3D scene borders */}
+          {/* Gradient edge blending */}
           <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#F4F5FA] to-transparent pointer-events-none z-10" />
           <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#F4F5FA] to-transparent pointer-events-none z-10" />
           <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#F4F5FA] to-transparent pointer-events-none z-10" />
@@ -301,11 +314,11 @@ export default function HeroScene({ onOpenBook }) {
         />
       </div>
 
-      {/* Skip button (top-right) — z-[60] to stay above loading overlay */}
-      <div className="absolute top-6 right-6 z-[60]">
+      {/* Skip button (top-right) */}
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 z-[60]">
         <button
           onClick={handleOpenBook}
-          className="text-xs font-body text-black/60 hover:text-black transition-all duration-300 px-3 py-1.5 border-2 border-yellow-400 hover:border-yellow-500 hover:shadow-md hover:shadow-yellow-400/20 bg-white/50 backdrop-blur-sm"
+          className="text-[9px] sm:text-[10px] md:text-xs font-body text-black/60 hover:text-black transition-all duration-300 px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 border-2 border-yellow-400 hover:border-yellow-500 hover:shadow-md hover:shadow-yellow-400/20 bg-white/50 backdrop-blur-sm"
         >
           Skip to Portfolio &rarr;
         </button>

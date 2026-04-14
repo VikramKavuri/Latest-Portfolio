@@ -921,7 +921,256 @@ html.scroll-mode .app-wrapper {
   border-color: #2C4A72 !important;
 }
 
+/* ══════════════════════════════════════════════
+   Circle of Cards — Projects Circle Layout
+   ══════════════════════════════════════════════ */
+
+.prx-circle-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Skills Filter Bar ── */
+.prx-skills-filter {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px 8px;
+  z-index: 30;
+  padding: 0 16px;
+}
+
+.prx-skills-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.prx-filter-chip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(44, 74, 114, 0.15);
+  background: rgba(255, 255, 255, 0.8);
+  color: #2C4A72;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.prx-filter-chip:hover {
+  border-color: #B8860B;
+  color: #B8860B;
+}
+
+.prx-filter-chip-active {
+  background: #2C4A72;
+  color: white;
+  border-color: #2C4A72;
+}
+
+.prx-filter-chip-active:hover {
+  background: #1e3654;
+  color: white;
+  border-color: #1e3654;
+}
+
+.prx-circle-center-text {
+  position: absolute;
+  text-align: center;
+  max-width: 260px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.prx-circle-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+  border: 1px solid rgba(205, 209, 221, 0.3);
+}
+
+.prx-circle-card:hover {
+  box-shadow: 0 8px 40px rgba(184, 134, 11, 0.15), 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* ══════════════════════════════════════════════
+   Project Detail — Full Page View
+   ══════════════════════════════════════════════ */
+
+.prx-detail-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  padding: 1.25rem 1.5rem;
+}
+
+.prx-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(205, 209, 221, 0.3);
+  margin-bottom: 0.75rem;
+  flex-shrink: 0;
+}
+
+.prx-detail-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  color: #2C4A72;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.prx-detail-back:hover {
+  background: rgba(44, 74, 114, 0.08);
+  color: #B8860B;
+}
+
+/* ── New 3-column layout: FileTree | Image | Description ── */
+.prx-detail-main {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.prx-detail-filetree {
+  width: 220px;
+  min-width: 180px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(44, 74, 114, 0.15) transparent;
+}
+
+.prx-detail-filetree::-webkit-scrollbar {
+  width: 4px;
+}
+
+.prx-detail-filetree::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prx-detail-filetree::-webkit-scrollbar-thumb {
+  background: rgba(44, 74, 114, 0.15);
+  border-radius: 2px;
+}
+
+.prx-detail-image {
+  flex: 1;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(205, 209, 221, 0.3);
+  min-width: 0;
+}
+
+.prx-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prx-detail-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(22, 25, 39, 0.03), rgba(22, 25, 39, 0.08));
+  pointer-events: none;
+}
+
+.prx-detail-sidebar {
+  width: 280px;
+  min-width: 240px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(44, 74, 114, 0.15) transparent;
+}
+
+.prx-detail-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.prx-detail-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prx-detail-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(44, 74, 114, 0.15);
+  border-radius: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   File Tree — Explorer Panel
+   ══════════════════════════════════════════════ */
+
+.prx-file-tree-container {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(205, 209, 221, 0.4);
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-family: 'DM Sans', monospace;
+}
+
+.prx-file-tree-node:hover {
+  background-color: rgba(184, 134, 11, 0.06);
+}
+
 /* ── Responsive ── */
+@media (max-width: 768px) {
+  .prx-detail-main {
+    flex-direction: column;
+  }
+
+  .prx-detail-filetree {
+    width: 100%;
+    min-width: 0;
+    max-height: 200px;
+  }
+
+  .prx-detail-image {
+    max-height: 200px;
+  }
+
+  .prx-detail-sidebar {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .prx-detail-page {
+    padding: 0.75rem 1rem;
+  }
+
+  .prx-skills-filter {
+    max-width: 98%;
+    bottom: 6px;
+    gap: 4px;
+  }
+}
+
+/* ── Responsive (original) ── */
 @media (max-width: 768px) {
   .prx-page {
     height: calc(100vh - 4rem);
@@ -1020,5 +1269,28 @@ html.scroll-mode .app-wrapper {
   }
   .tilt-card {
     transition: none;
+  }
+}
+
+/* ─── Hero SkillBadges responsive scaling ─── */
+@media (min-width: 640px) {
+  .skill-badges-container {
+    gap: 8px !important;
+  }
+  .skill-badge {
+    padding: 4px 12px !important;
+    font-size: 0.7rem !important;
+  }
+}
+@media (min-width: 768px) {
+  .skill-badge {
+    padding: 5px 14px !important;
+    font-size: 0.72rem !important;
+  }
+}
+@media (min-width: 1024px) {
+  .skill-badge {
+    padding: 5px 16px !important;
+    font-size: 0.78rem !important;
   }
 }

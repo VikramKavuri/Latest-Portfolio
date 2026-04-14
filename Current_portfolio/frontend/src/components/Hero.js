@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { ChevronDown, Database, BarChart3, Cloud, Cpu, Zap, TrendingUp } from 'lucide-react';
 import JobMatchAnalyzer from './JobMatchAnalyzer';
+import { SkillBadges } from './effects/SkillBadges';
 
 const Hero = ({ onSkillsIdentified }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -267,6 +268,17 @@ const Hero = ({ onSkillsIdentified }) => {
               ))}
             </div>
           </div>
+        </motion.div>
+
+        {/* Skill Badges — Interactive Domain Tags */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          className="mb-6 sm:mb-8"
+          style={{ overflow: 'visible' }}
+        >
+          <SkillBadges />
         </motion.div>
 
         {/* Concrete Proof Points */}

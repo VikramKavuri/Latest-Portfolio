@@ -1,0 +1,178 @@
+{
+  "contact": {
+    "name": "ThrivikramaRao Kavuri",
+    "email": "thrivikramaraokavuri@gmail.com",
+    "phone": "(716) 253-5373",
+    "location": "Buffalo, New York, US"
+  },
+  "education": [
+    {
+      "degree": "Masters in Data Science",
+      "institution": "University at Buffalo",
+      "gpa": "3.7/4.0",
+      "period": "Jan 2023 – May 2024"
+    },
+    {
+      "degree": "Bachelor's in Computer Science",
+      "institution": "Karunya University",
+      "gpa": "3.4/4.0",
+      "period": "Jun 2016 – Jul 2020"
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Data Analytics Engineer",
+      "company": "The Arc Erie County, New York",
+      "location": "Buffalo, New York, US",
+      "period": "Jan 2025 – Present",
+      "type": "Current Role",
+      "highlights": [
+        "Engineered modular dbt-like SQL transformations and incremental pipelines unifying NetSuite, AVID, and billing data into Snowflake tables, reducing reconciliation by 35%, improving consistency for finance and operations teams.",
+        "Designed star-schema data models for service use, staffing, and budgets, restructuring fragmented sources to cut query latency 30% and enable reliable, self-service analytics across operational teams.",
+        "Implemented data-quality controls using Python (Pandas, great_expectations) and T-SQL tests to detect schema drift, null spikes, and join issues, maintaining 99% reliability for mission-critical dashboards.",
+        "Delivered executive dashboards structured with narrative storytelling, anomaly signals, and layered trend analysis, enabling leaders to quickly grasp performance issues, identify service gaps.",
+        "Fine-tuned Qwen2.5-VL via LoRA for field-targeted extraction, achieving 87% accuracy on 10K handwritten forms in 2 months, enabling HIPAA-compliant GenAI deployment across 284 residential stakeholders.",
+        "Designed regex-based PHI masking engine with L-diversity validation, securing 60K+ patient records across 8 AI dashboards, passed internal audit without exception, enforcing zero-risk compliance standards.",
+        "Formulated cohort analyses in Tableau on AR/AP finance data, patient-service utilization, and budget monitoring, profiling thousands of healthcare and finance records in SQL warehouse to expose persistent service gaps.",
+        "Collaborated with Property, Residential, Finance, and Clinic departments to define KPIs, document mappings, and standardize reporting templates, elevating dashboard usability, adoption, and governance department-wide.",
+        "Integrated PrecisionCare (EHR), NetSuite (ERP), and Dayforce (HRIS) via REST APIs, creating a single trusted dataset.",
+        "Architected Snowflake cloud data warehouse, accelerating queries by 85% for 50+ concurrent users.",
+        "Reduced billing backlog 40%, cut submission time 18 to 11 days via Tableau dashboards.",
+        "Implemented HIPAA & FERPA compliant data governance, passing audits with zero findings."
+      ],
+      "technologies": ["Python", "Snowflake", "Apache Airflow", "SQL", "Tableau", "SSRS", "Pandas", "great_expectations", "T-SQL", "REST APIs"]
+    },
+    {
+      "title": "Data Science Analyst",
+      "company": "Accenture India Pvt Ltd",
+      "location": "Bangalore, India",
+      "period": "May 2021 – Jan 2023",
+      "type": "1 year 9 months",
+      "highlights": [
+        "Built Power BI and Qlik dashboards with reusable DAX measures, automated refresh pipelines, and QA checks, giving business teams on demand visibility into customer trends and operational KPIs.",
+        "Applied Python (pandas, scikit-learn) to run uplift modeling and A/B test evaluations for promotional campaigns, identifying high-response segments and increasing targeted conversion impact.",
+        "Collaborated with marketing, product, and analytics teams to define KPI logic, validate data sources, and translate business questions into reusable analytical frameworks.",
+        "Implemented GDPR-aligned data governance using hashing, tokenization, and secure access rules, ensuring customer-level reporting met privacy expectations for audits and partner reviews.",
+        "Built demand forecasting models using Prophet, ARIMA, and XGBoost for BP's 2,800+ EU stores, achieving 91% accuracy (MAPE 8.7%) on 15K SKUs, cutting stockouts by 18% and perishable waste by 23%.",
+        "Architected GCP pipelines processing 5TB daily POS data with PySpark on Dataproc and BigQuery partitioning/clustering, delivering <2s query performance and 35% cost reduction via lifecycle policies.",
+        "Automated ML deployment via Cloud Build, Terraform with drift monitoring, reducing deployment time 60% (3 days to 4 hours) and eliminating 75% of manual validation through CI/CD gates.",
+        "Deployed 37 Power BI dashboards with DAX for forecast accuracy, inventory KPIs, and promotional ROI across country-store-product hierarchies, training 450+ stakeholders and boosting adoption by 40%.",
+        "Supported Fortune 500 retail client's cloud-native lakehouse migration.",
+        "Cut Morning Executive Report runtime from 4 hours to 45 minutes via materialized views.",
+        "Built XGBoost forecasting model achieving <12% MAPE, solving chronic stockout issues.",
+        "Delivered 37 dashboards boosting report reliability by 20% via automated validation."
+      ],
+      "technologies": ["PySpark", "AWS Redshift", "Snowflake", "Power BI", "Azure DevOps", "Qlik Sense", "Python", "pandas", "scikit-learn", "GCP", "BigQuery", "Dataproc", "Terraform", "XGBoost", "Prophet", "ARIMA", "DAX"]
+    },
+    {
+      "title": "Business Analyst",
+      "company": "SRIT Pvt Ltd",
+      "location": "Bangalore, India",
+      "period": "Jan 2020 – Apr 2021",
+      "type": "1 year 4 months",
+      "highlights": [
+        "Gathered and clarified clinical workflow requirements through stakeholder interviews and SQL data reviews, producing detailed FRDs/BRDs and Visio process maps that reduced integration defects across releases.",
+        "Developed operational dashboards with Power BI and Apache Superset, defining KPIs, shaping data logic, and enabling leadership to track patient-care metrics, service usage patterns, and administrative throughput.",
+        "Led UAT cycles by writing test scenarios, validating business rules, logging defects, and coordinating fixes with developers, ensuring each release met functional expectations before production sign-off.",
+        "Translated healthcare requirements into FRDs and BRDs through stakeholder interviews, analyzing relational data in PostgreSQL to improve project clarity and reduce integration errors.",
+        "Led Agile sprints and stand-ups for a 13-member team, using MS Project for budget tracking, Visio for process mapping, and JIRA for risk and deliverable management.",
+        "Defined business rules for validating and transforming healthcare datasets, ensuring accurate, high-quality inputs for interactive Power BI and Apache Superset dashboards.",
+        "Applied MECE and Theory of Constraints for 8% hospital performance improvement.",
+        "Analyzed 1M+ patient records using SQL and K-means clustering for risk cohort identification."
+      ],
+      "technologies": ["SQL", "Power BI", "Apache Superset", "JIRA", "MS Project", "PostgreSQL", "Visio"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Telecom Customer Churn Prediction",
+      "category": "Machine Learning",
+      "description": "Predicted telecom customer churn with 87% accuracy using ML models, enabling proactive retention strategies.",
+      "technologies": ["Python", "Scikit-learn", "XGBoost", "Flask", "Pandas"],
+      "features": ["Processed 7,000+ records with 33 features", "Benchmarked 6 ML algorithms", "Deployed Flask web app for real-time predictions"],
+      "keyMetric": "87% Accuracy"
+    },
+    {
+      "title": "Real-time CPU Monitoring Dashboard",
+      "category": "Business Intelligence",
+      "description": "Lightweight Power BI solution monitoring Windows system health in real-time without costly Azure infrastructure.",
+      "technologies": ["Power BI", "PowerShell", "REST API"],
+      "features": ["Second-level refresh for live dashboards", "Tracks 15+ system metrics", "Zero infrastructure cost"],
+      "keyMetric": "1s Refresh"
+    },
+    {
+      "title": "Retail Data Migration",
+      "category": "Data Engineering",
+      "description": "Migrated on-premise retail ERP data to Azure cloud with Bronze-Silver-Gold medallion architecture.",
+      "technologies": ["Azure Data Factory", "Databricks", "Synapse", "Power BI", "Delta Lake"],
+      "features": ["Extracted 10+ tables from on-prem SQL Server", "Automated ETL with dynamic table discovery", "Secured with Azure Key Vault"],
+      "keyMetric": "99.9% Uptime"
+    },
+    {
+      "title": "Regional Hardware Sales Analysis",
+      "category": "Business Intelligence",
+      "description": "Tableau dashboards analyzing hardware sales across Indian markets with star schema data model.",
+      "technologies": ["Tableau", "SQL", "MySQL", "Excel"],
+      "features": ["Automated ETL with star schema", "Interactive revenue & profit dashboards", "Replaced manual Excel reporting"],
+      "keyMetric": "10+ Markets"
+    },
+    {
+      "title": "Real-Time E-Commerce Pipeline",
+      "category": "Data Engineering",
+      "description": "Scalable data pipeline processing 100K+ e-commerce events per second with sub-second insights.",
+      "technologies": ["AWS Kinesis", "Apache Airflow", "Snowflake", "Python"],
+      "features": ["Millions of customer order events processed", "Auto-scaling and error recovery", "Instant BI reporting"],
+      "keyMetric": "100K+ Events/s"
+    },
+    {
+      "title": "Healthcare FHIR Data to Patient Risk",
+      "category": "Machine Learning",
+      "description": "Converted complex FHIR healthcare records into patient risk dashboards with 92% prediction accuracy.",
+      "technologies": ["Databricks", "Apache Spark", "Python", "FHIR", "MLflow"],
+      "features": ["Automated FHIR bundle ingestion", "Patient-360 views with Delta Lake", "Explainable SHAP outputs"],
+      "keyMetric": "92% Accuracy"
+    },
+    {
+      "title": "Job Search Automation with MCP",
+      "category": "Automation",
+      "description": "Automation agent using MCP server to scrape, classify, and centralize job postings.",
+      "technologies": ["Python", "MCP Server", "Excel"],
+      "features": ["Automated scraping of 4+ job portals", "Classified DE & Analytics roles", "Centralized job repository"],
+      "keyMetric": "4+ Portals"
+    },
+    {
+      "title": "Real-Time Stock Market Data Pipeline",
+      "category": "Data Engineering",
+      "description": "Devised a real-time stock market data pipeline, leveraging PySpark for distributed processing, GCP BigQuery for scalable storage, Databricks for optimized querying, and Airflow for orchestration cutting query latency 30%.",
+      "technologies": ["PySpark", "Databricks", "GCP", "Apache Airflow"],
+      "features": ["Real-time data ingestion", "Distributed processing with PySpark", "30% query latency reduction"],
+      "keyMetric": "30% Faster Queries"
+    }
+  ],
+  "skills": {
+    "Languages": ["Python", "SQL", "PySpark", "PowerShell", "R", "Java"],
+    "Cloud": ["AWS", "Azure", "GCP", "Databricks"],
+    "Data Tools": ["Tableau", "Power BI", "Apache Airflow", "Hadoop", "Docker", "SSIS"],
+    "Databases": ["PostgreSQL", "SQL Server", "Snowflake", "MySQL", "MongoDB"],
+    "BI Tools": ["Tableau", "Power BI", "Qlik Sense", "Apache Superset", "SSRS"],
+    "ETL Tools": ["Apache Airflow", "Azure Data Factory", "SSIS"],
+    "ML Libraries": ["Pandas", "NumPy", "Scikit-learn", "XGBoost", "Prophet", "ARIMA"]
+  },
+  "certifications": [
+    {
+      "name": "Microsoft Certified: Fabric Data Engineer Associate",
+      "issuer": "Microsoft",
+      "date": "2024"
+    },
+    {
+      "name": "Oracle Cloud Infrastructure 2024 Generative AI Certified Professional",
+      "issuer": "Oracle",
+      "date": "2024"
+    },
+    {
+      "name": "Python for Data Science, AI & Development",
+      "issuer": "Coursera",
+      "date": "2023"
+    }
+  ]
+}

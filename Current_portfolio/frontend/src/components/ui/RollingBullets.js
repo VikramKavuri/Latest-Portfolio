@@ -2,18 +2,22 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 
 const BULLETS = [
-  "Think like a business person, operate like a scientist.",
-  "Make everyone around me faster, safer, and confident in the data.",
+  "Rip out legacy systems and migrate them to cloud. Nothing breaks.",
+  "Build HIPAA-grade data pipelines where one bad record means audit.",
+  "Build the warehouse, the pipelines, the models, and the dashboards people actually open.",
+  "Turn stakeholder requirements into self-serve analytics and KPI frameworks.",
   "Build models people trust, use, and make decisions from.",
+  "Make everyone around me faster, safer, and confident in the data.",
 ];
 
-const BLOCK_COLOR = "#F4F5FA"; // Match page background
+const BLOCK_COLOR = "#F4F5FA";
 
 export default function RollingBullets({ isReady = true }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const textRef = useRef(null);
   const blockRef = useRef(null);
   const timelineRef = useRef(null);
+  const containerRef = useRef(null);
 
   const animateIn = useCallback(() => {
     if (!textRef.current || !blockRef.current) return;
@@ -57,6 +61,20 @@ export default function RollingBullets({ isReady = true }) {
     timelineRef.current = tl;
   }, []);
 
+  // Auto-adjust container height based on text content
+  useEffect(() => {
+    if (containerRef.current && textRef.current) {
+      // Temporarily make text visible to measure
+      const origOpacity = textRef.current.style.opacity;
+      textRef.current.style.opacity = '1';
+      textRef.current.style.position = 'relative';
+      const height = textRef.current.scrollHeight;
+      textRef.current.style.opacity = origOpacity;
+      textRef.current.style.position = '';
+      containerRef.current.style.minHeight = `${Math.max(height, 40)}px`;
+    }
+  }, [currentIndex]);
+
   useEffect(() => {
     if (!isReady) return;
     const timer = setTimeout(animateIn, 50);
@@ -66,10 +84,10 @@ export default function RollingBullets({ isReady = true }) {
   if (!isReady) return null;
 
   return (
-    <div className="max-w-xl">
-      {/* "I Will" — golden yellow, left-aligned to match hero layout */}
+    <div className="w-full">
+      {/* "I Will" header */}
       <p
-        className="font-body text-base md:text-lg font-semibold tracking-[0.25em] uppercase mb-2"
+        className="font-body text-xs sm:text-sm md:text-base lg:text-lg font-semibold tracking-[0.2em] sm:tracking-[0.25em] uppercase mb-1"
         style={{
           background: "linear-gradient(90deg, #B8860B, #D4A843, #FFD700)",
           WebkitBackgroundClip: "text",
@@ -82,19 +100,19 @@ export default function RollingBullets({ isReady = true }) {
 
       {/* Rolling bullet container */}
       <div
+        ref={containerRef}
         className="relative overflow-hidden"
-        style={{ minHeight: "3.5rem" }}
+        style={{ minHeight: "3rem" }}
       >
-        {/* The text — matches Data Analytics Engineer font style */}
         <p
           ref={textRef}
-          className="font-body text-lg md:text-xl text-black/70 tracking-wide leading-relaxed"
+          className="font-body text-xs sm:text-sm md:text-base lg:text-lg text-black/70 tracking-wide leading-relaxed"
           style={{ opacity: 0 }}
         >
           {BULLETS[currentIndex]}
         </p>
 
-        {/* White block revealer with subtle shadow for visibility */}
+        {/* Block revealer */}
         <div
           ref={blockRef}
           style={{

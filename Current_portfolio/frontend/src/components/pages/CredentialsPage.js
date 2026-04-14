@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { certifications } from '../../data/certifications';
 import { testimonials } from '../../data/testimonials';
@@ -6,9 +6,9 @@ import AchievementCounters from '../illustrations/AchievementCounters';
 import { ScrollReveal } from '../effects/ScrollReveal';
 import { SpotlightCard } from '../effects/SpotlightCard';
 import { TextShimmer } from '../effects/TextShimmer';
+import { TestimonialCarousel } from '../effects/TestimonialCarousel';
 
 export default function CredentialsPage() {
-  const [expandedTestimonial, setExpandedTestimonial] = useState(null);
 
   return (
     <div className="max-w-3xl mx-auto pt-8 md:pt-16 pb-24">
@@ -72,48 +72,9 @@ export default function CredentialsPage() {
         <div className="gold-line w-12 mb-10" />
       </ScrollReveal>
 
-      <div className="space-y-8">
-        {testimonials.map((t, i) => (
-          <ScrollReveal key={t.id} delay={0.35 + i * 0.1}>
-            <SpotlightCard intensity={2} spotlightColor="rgba(44, 74, 114, 0.06)">
-              <div className="relative pl-8 p-4">
-                <span className="absolute left-2 -top-0 font-display text-5xl text-gold/70 leading-none select-none">
-                  &ldquo;
-                </span>
-
-                <blockquote className="font-body text-[#1a1a2e] text-[15px] leading-relaxed italic mb-4">
-                  {expandedTestimonial === t.id ? t.fullContent : t.content}
-                </blockquote>
-
-                {t.fullContent !== t.content && (
-                  <button
-                    onClick={() => setExpandedTestimonial(
-                      expandedTestimonial === t.id ? null : t.id
-                    )}
-                    className="text-xs font-body text-navy hover:underline mb-4"
-                  >
-                    {expandedTestimonial === t.id ? 'Show less' : 'Read full'}
-                  </button>
-                )}
-
-                <div className="flex items-center gap-3">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="font-body text-sm font-medium text-[#161927]">{t.name}</p>
-                    <p className="font-body text-xs text-[#4A4F6A]">
-                      {t.role}, {t.company}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </SpotlightCard>
-          </ScrollReveal>
-        ))}
-      </div>
+      <ScrollReveal delay={0.35}>
+        <TestimonialCarousel testimonials={testimonials} />
+      </ScrollReveal>
     </div>
   );
 }
