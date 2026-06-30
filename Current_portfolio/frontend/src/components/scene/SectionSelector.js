@@ -1,6 +1,8 @@
 import React from 'react';
 import { User, Briefcase, FolderOpen, Wrench, Award, MessageCircle } from 'lucide-react';
-import { RadialScrollGallery } from './RadialScrollGallery';
+import SectionCarousel from './SectionCarousel';
+
+const dialImageBase = '/section-dials';
 
 const SECTIONS = [
   {
@@ -8,42 +10,42 @@ const SECTIONS = [
     icon: User,
     description: 'Who I am & my journey',
     pageIndex: 0,
-    image: 'https://cdn.prod.website-files.com/685c8edb74b82f0570be8f7d/685c8edb74b82f0570be974e_pick-me.webp',
+    image: `${dialImageBase}/about.webp`,
   },
   {
     label: 'Experience',
     icon: Briefcase,
     description: 'Professional timeline',
     pageIndex: 1,
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop&auto=format&q=80',
+    image: `${dialImageBase}/experience.webp`,
   },
   {
     label: 'Selected Work',
     icon: FolderOpen,
     description: 'Projects & case studies',
     pageIndex: 2,
-    image: 'https://www.ntaskmanager.com/wp-content/uploads/2020/10/project-design-in-project-management.png',
+    image: `${dialImageBase}/selected-work.webp`,
   },
   {
     label: 'Toolkit',
     icon: Wrench,
     description: 'Skills & technologies',
     pageIndex: 3,
-    image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop&auto=format&q=80',
+    image: `${dialImageBase}/toolkit.webp`,
   },
   {
     label: 'Credentials',
     icon: Award,
     description: 'Certifications & endorsements',
     pageIndex: 4,
-    image: 'https://www.nbrc.org/wp-content/uploads/2020/02/credentials2.jpg',
+    image: `${dialImageBase}/credentials.webp`,
   },
   {
     label: "Let's Talk",
     icon: MessageCircle,
     description: 'Get in touch',
     pageIndex: 5,
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=300&fit=crop&auto=format&q=80',
+    image: `${dialImageBase}/contact.webp`,
   },
 ];
 
@@ -71,13 +73,14 @@ function SectionCard({ section, isHovered }) {
         }}
       />
 
-      {/* Overlay so text stays readable */}
+      {/* Editorial scrim so text stays readable without flattening every image. */}
       <div
-        className={`absolute inset-0 transition-opacity duration-500 ${
-          isHovered
-            ? 'bg-black/35'
-            : 'bg-black/45'
-        }`}
+        className="absolute inset-0 transition-opacity duration-500"
+        style={{
+          background: isHovered
+            ? 'linear-gradient(125deg, rgba(8, 14, 28, 0.34) 0%, rgba(8, 14, 28, 0.12) 48%, rgba(8, 14, 28, 0.28) 100%)'
+            : 'linear-gradient(125deg, rgba(8, 14, 28, 0.48) 0%, rgba(8, 14, 28, 0.2) 48%, rgba(8, 14, 28, 0.38) 100%)',
+        }}
       />
 
       {/* Subtle tint on hover */}
@@ -91,7 +94,10 @@ function SectionCard({ section, isHovered }) {
       />
 
       {/* Content */}
-      <div className="relative z-10 px-6 py-8">
+      <div
+        className="relative z-10 px-6 py-8"
+        style={{ textShadow: '0 2px 16px rgba(0, 0, 0, 0.55)' }}
+      >
         {/* Accent line at top */}
         <div
           className={`absolute top-0 left-0 h-[2px] transition-all duration-500 ${
@@ -144,13 +150,13 @@ function SectionCard({ section, isHovered }) {
 export default function SectionSelector({ onSelectSection }) {
   return (
     <div
-      className="relative w-full"
+      className="relative w-full min-h-screen flex flex-col justify-center py-12"
       style={{
         background: '#F4F5FA',
       }}
     >
       {/* Section heading */}
-      <div className="text-center pt-16 pb-4 relative z-10">
+      <div className="text-center pb-2 relative z-10">
         <p className="font-body text-[10px] text-black/40 tracking-[0.3em] uppercase mb-3">
           Portfolio
         </p>
@@ -165,33 +171,17 @@ export default function SectionSelector({ onSelectSection }) {
           }}
         />
         <p className="font-body text-sm mt-4 max-w-md mx-auto gold-shimmer-text">
-          Scroll to rotate the wheel. Click a section to dive in.
+          Browse the sections. Click the centered card to dive in.
         </p>
       </div>
 
-      {/* Radial Gallery */}
-      <RadialScrollGallery
-        scrollDuration={2500}
-        visiblePercentage={45}
-        baseRadius={550}
-        mobileRadius={220}
-        startTrigger="center center"
-        onItemSelect={(index) => {
-          if (onSelectSection) {
-            onSelectSection(SECTIONS[index].pageIndex);
-          }
+      {/* Coverflow carousel */}
+      <SectionCarousel
+        sections={SECTIONS}
+        onSelect={(pageIndex) => {
+          if (onSelectSection) onSelectSection(pageIndex);
         }}
-      >
-        {(hoveredIndex) =>
-          SECTIONS.map((section, index) => (
-            <SectionCard
-              key={section.label}
-              section={section}
-              isHovered={hoveredIndex === index}
-            />
-          ))
-        }
-      </RadialScrollGallery>
+      />
     </div>
   );
 }

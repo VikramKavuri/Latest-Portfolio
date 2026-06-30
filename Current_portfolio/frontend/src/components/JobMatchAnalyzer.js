@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Loader, CheckCircle, BarChart, List, BrainCircuit, AlertTriangle, X, Sparkles, Search } from 'lucide-react';
 import ReactDOM from 'react-dom';
 
-const JobMatchAnalyzer = ({ onAnalysisComplete }) => {
+const JobMatchAnalyzer = ({ onAnalysisComplete, variant = 'card' }) => {
   const [jobDescription, setJobDescription] = useState('');
   const [analysisResult, setAnalysisResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -130,6 +130,22 @@ const JobMatchAnalyzer = ({ onAnalysisComplete }) => {
           </div>
         </div>
       </div>
+    </div>
+  );
+
+  // ── Conversational speech bubble (spoken by the 3D robot) ──
+  const bubbleTrigger = (
+    <div className="jma-bubble group" onClick={() => setIsOverlayOpen(true)} role="button" tabIndex={0}>
+      <div className="jma-bubble-inner">
+        <span className="jma-bubble-eyebrow">
+          <Sparkles size={12} /> Vikram&rsquo;s AI
+        </span>
+        <p className="jma-bubble-text">
+          Hey there 👋 Curious if Vikram fits your role? Paste the job description and I&rsquo;ll show you the match in seconds.
+        </p>
+        <span className="jma-bubble-cta">Let&rsquo;s find out <Search size={13} /></span>
+      </div>
+      <span className="jma-bubble-tail" />
     </div>
   );
 
@@ -372,7 +388,7 @@ const JobMatchAnalyzer = ({ onAnalysisComplete }) => {
 
   return (
     <>
-      {heroCard}
+      {variant === 'bubble' ? bubbleTrigger : heroCard}
       {/* Portal the overlay to document.body so it's above everything */}
       {ReactDOM.createPortal(overlay, document.body)}
     </>

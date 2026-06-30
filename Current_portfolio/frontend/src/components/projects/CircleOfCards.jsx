@@ -174,19 +174,23 @@ export default function CircleOfCards({ projects, onSelectProject }) {
 
   // ── Measure container ──
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const updateSize = () => {
-      const rect = containerRef.current.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       setContainerSize({ width: rect.width, height: rect.height });
       setIsMobile(rect.width < 640);
     };
 
     const observer = new ResizeObserver(updateSize);
-    observer.observe(containerRef.current);
+    observer.observe(container);
     updateSize();
 
-    return () => observer.disconnect();
+    return () => {
+      observer.unobserve(container);
+      observer.disconnect();
+    };
   }, []);
 
   // ── Intro animation: scatter → line (30s) → circle ──

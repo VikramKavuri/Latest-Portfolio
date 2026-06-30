@@ -6,6 +6,8 @@ import useGithubTree from '../../hooks/useGithubTree';
 
 export default function ProjectDetail({ project, onBack }) {
   const { tree, loading, error, branch } = useGithubTree(project.githubUrl);
+  const detailMedia = project.detailGif || project.image;
+  const hasDetailGif = Boolean(project.detailGif);
 
   return (
     <motion.div
@@ -40,7 +42,7 @@ export default function ProjectDetail({ project, onBack }) {
               rel="noopener noreferrer"
               className="prx-link"
             >
-              <ExternalLink size={14} /> Demo
+              <ExternalLink size={14} /> {project.demoLabel || 'Demo'}
             </a>
           )}
         </div>
@@ -79,13 +81,13 @@ export default function ProjectDetail({ project, onBack }) {
         </div>
 
         {/* Project Image */}
-        <div className="prx-detail-image">
+        <div className={`prx-detail-image ${hasDetailGif ? 'prx-detail-gif-frame' : ''}`}>
           <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
+            src={detailMedia}
+            alt={`${project.title} ${hasDetailGif ? 'workflow animation' : 'preview'}`}
+            className="w-full h-full"
           />
-          <div className="prx-detail-image-overlay" />
+          {!hasDetailGif && <div className="prx-detail-image-overlay" />}
         </div>
 
         {/* Description Panel (right side) */}

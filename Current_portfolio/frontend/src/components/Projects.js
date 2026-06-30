@@ -28,7 +28,7 @@ const Projects = ({ autoSelectedSkills = [] }) => {
         { label: "Records", value: "7K+" },
         { label: "Revenue Impact", value: "$1.6M" }
       ],
-      demoUrl: "#",
+      demoUrl: "https://telco-churn-predictor.vercel.app/",
       githubUrl: "https://github.com/VikramKavuri/Teleco-Customer-Churn-Prediction"
     },
     {
@@ -50,7 +50,7 @@ const Projects = ({ autoSelectedSkills = [] }) => {
         { label: "Metrics", value: "15+" },
         { label: "Infra Cost", value: "$0" }
       ],
-      demoUrl: "https://app.powerbi.com/links/OdX0WyqgcH",
+      demoUrl: "https://app.powerbi.com/links/OdX0WyqgcH?ctid=4d3694c5-30db-415b-877c-bd2163526c94&pbi_source=linkShare",
       githubUrl: "https://github.com/VikramKavuri/Power-BI-Realtime-CPU-monitoring-dashboard"
     },
     {
@@ -77,7 +77,7 @@ const Projects = ({ autoSelectedSkills = [] }) => {
     },
     {
       id: 4,
-      title: "Regional Hardware Sales Analysis",
+      title: "AtliQ Sales Analysis",
       category: "Business Intelligence",
       description: "Built Tableau dashboards to analyze hardware sales across Indian markets, uncovering revenue trends and profitability insights.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
@@ -94,8 +94,8 @@ const Projects = ({ autoSelectedSkills = [] }) => {
         { label: "Markets", value: "10+" },
         { label: "Data Model", value: "Star" }
       ],
-      demoUrl: "https://public.tableau.com/views/SalesInsights-DataAnalysisProject/",
-      githubUrl: "https://github.com/VikramKavuri/Sales-Insights---Data-Analysis-using-Tableau-SQL"
+      demoUrl: "https://public.tableau.com/app/profile/thrivikrama.rao.kavuri6778/viz/AtliQ-Sales-Insights/RevenueOverview",
+      githubUrl: "https://github.com/VikramKavuri/Atliq-Sales-Analysis"
     },
     {
       id: 5,
@@ -160,7 +160,7 @@ const Projects = ({ autoSelectedSkills = [] }) => {
         { label: "Retries", value: "3" },
         { label: "Logs", value: "100%" }
       ],
-      demoUrl: "#",
+      demoUrl: "https://job-search-mcp-tau.vercel.app/",
       githubUrl: "https://github.com/VikramKavuri/Jobsearch_using_MCP_server"
     }
   ];

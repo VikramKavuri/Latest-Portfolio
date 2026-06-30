@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { projects } from '../../data/projects';
-import CircleOfCards from '../projects/CircleOfCards';
+import ProjectSlider from '../projects/ProjectSlider';
 import ProjectDetail from '../projects/ProjectDetail';
 
 export default function ProjectsPage() {
@@ -17,8 +17,8 @@ export default function ProjectsPage() {
             onBack={() => setSelectedProject(null)}
           />
         ) : (
-          <CircleOfCards
-            key="circle"
+          <ProjectSlider
+            key="slider"
             projects={projects}
             onSelectProject={setSelectedProject}
           />

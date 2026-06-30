@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { SplineScene } from '../ui/splite';
 import { Spotlight } from '../ui/spotlight';
 import { ArrowRight, Github, Linkedin, MapPin } from 'lucide-react';
-import RollingBullets from '../ui/RollingBullets';
+import Typewriter from '../effects/Typewriter';
 import { SkillBadges } from '../effects/SkillBadges';
 import JobMatchAnalyzer from '../JobMatchAnalyzer';
 
@@ -208,13 +208,21 @@ export default function HeroScene({ onOpenBook }) {
             </div>
           </div>
 
-          {/* Rolling Bullet Titles — "I Will" section */}
+          {/* Typewriter Titles — "I Will" section */}
           <div
             className={`transition-all duration-700 delay-[1000ms] mb-1.5 sm:mb-2 ${
               contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <RollingBullets isReady={contentReady} />
+            <Typewriter
+              phrases={[
+                'turn chaos into clarity',
+                'make executives say wow',
+                'ship results, not reports',
+                'solve million-dollar problems',
+                'build what others can’t',
+              ]}
+            />
           </div>
 
           {/* Domain Expertise Badges — centered flex-wrap */}
@@ -243,9 +251,6 @@ export default function HeroScene({ onOpenBook }) {
               />
             </button>
 
-            {/* Job Fit Analyzer — opens as drawer overlay */}
-            <JobMatchAnalyzer />
-
             <div className="flex items-center gap-1.5 sm:gap-2">
               <a
                 href="https://github.com/vikramkavuri"
@@ -266,6 +271,15 @@ export default function HeroScene({ onOpenBook }) {
                 <Linkedin size={15} className="sm:w-4 sm:h-4" />
               </a>
             </div>
+          </div>
+
+          {/* Mobile: robot conversation bubble (robot is a bg on mobile) */}
+          <div
+            className={`md:hidden mt-4 transition-all duration-700 delay-[1300ms] ${
+              contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            <JobMatchAnalyzer variant="bubble" />
           </div>
 
           {/* Scroll indicator */}
@@ -293,6 +307,15 @@ export default function HeroScene({ onOpenBook }) {
               className="w-full h-full"
               onLoad={handleSplineLoad}
             />
+          </div>
+
+          {/* Robot conversation bubble — looks like the 3D model is speaking */}
+          <div
+            className={`absolute top-[20%] left-[2%] lg:left-[4%] w-[16rem] lg:w-[18rem] z-20 transition-all duration-700 delay-[1400ms] ${
+              contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            <JobMatchAnalyzer variant="bubble" />
           </div>
 
           {/* Gradient edge blending */}

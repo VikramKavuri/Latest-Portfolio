@@ -1,3 +1,5 @@
+const SNOWFLAKE_ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%2329B6F6' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32 6v52M10 19l44 26M54 19 10 45M22 11l10 8 10-8M22 53l10-8 10 8M9 31l13-4-3-13M55 31l-13-4 3-13M9 33l13 4-3 13M55 33l-13 4 3 13'/%3E%3C/g%3E%3C/svg%3E";
+
 export const skills = {
   technical: [
     {
@@ -36,7 +38,7 @@ export const skills = {
       skills: [
         { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
         { name: "SQL Server", icon: "https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg" },
-        { name: "Snowflake", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/snowflake/snowflake-original.svg" },
+        { name: "Snowflake", icon: SNOWFLAKE_ICON },
         { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
         { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" }
       ]

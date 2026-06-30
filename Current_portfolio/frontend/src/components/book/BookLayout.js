@@ -2,7 +2,9 @@ import React, { useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Page from './Page';
 import TableOfContents from './TableOfContents';
+import ScrollCue from './ScrollCue';
 import { CursorGlow } from '../effects/CursorGlow';
+import useAutoAdvance from '../../hooks/useAutoAdvance';
 
 const PAGE_LABELS = ['About', 'Experience', 'Projects', 'Toolkit', 'Credentials', 'Contact'];
 
@@ -21,6 +23,9 @@ export default function BookLayout({
 }) {
   const containerRef = useRef(null);
   const touchStartX = useRef(null);
+
+  // Auto-advance to next/prev page on over-scroll past content edges
+  useAutoAdvance(containerRef, { currentPage, nextPage, prevPage, isFlipping });
 
   // Mobile swipe
   useEffect(() => {
@@ -114,6 +119,9 @@ export default function BookLayout({
         goToPage={goToPage}
         labels={PAGE_LABELS}
       />
+
+      {/* Scroll-to-proceed cue */}
+      <ScrollCue visible={!isFlipping && !isLastPage} />
 
       {/* Close book button */}
       <button
