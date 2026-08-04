@@ -2853,6 +2853,13 @@ html.scroll-mode .app-wrapper {
   }
 
 /* Desktop AI dock: compact enough to preserve the Spline robot's face. */
+.hero-desktop-ai-dock,
+.hero-desktop-ai-dock .jma-dock {
+  /* The surrounding Spline shell ignores pointer input. Restore it only for
+     the AI control so the robot remains non-blocking while the dock is usable. */
+  pointer-events: auto;
+}
+
 .jma-dock {
   position: relative;
   isolation: isolate;
