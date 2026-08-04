@@ -1,5 +1,12 @@
 
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/analyze-match.mjs": {
+      "maxDuration": 60,
+      "includeFiles": "../backend/data/candidate_data.json"
+    }
+  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]

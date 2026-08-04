@@ -42,12 +42,28 @@ const JobMatchAnalyzer = ({ onAnalysisComplete, variant = 'card' }) => {
   }, [isOverlayOpen, handleClose]);
 
   const analyzeWithBackend = async (jobDesc) => {
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
-    const response = await fetch(`${backendUrl}/api/analyze-match`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ job_description: jobDesc }),
-    });
+    const configuredBackendUrl = process.env.REACT_APP_BACKEND_URL?.trim().replace(/\/$/, '');
+    const endpoint = configuredBackendUrl
+      ? `${configuredBackendUrl}/api/analyze-match`
+      : '/api/analyze-match';
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 65_000);
+    let response;
+    try {
+      response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ job_description: jobDesc }),
+        signal: controller.signal,
+      });
+    } catch (requestError) {
+      if (requestError.name === 'AbortError') {
+        throw new Error('The analysis took too long. Please try again.');
+      }
+      throw new Error('The AI service is temporarily unreachable. Please try again.');
+    } finally {
+      window.clearTimeout(timeoutId);
+    }
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(errorData.detail || 'Failed to analyze match. Please try again.');
@@ -135,7 +151,7 @@ const JobMatchAnalyzer = ({ onAnalysisComplete, variant = 'card' }) => {
 
   // ── Conversational speech bubble (spoken by the 3D robot) ──
   const bubbleTrigger = (
-    <div className="jma-bubble group" onClick={() => setIsOverlayOpen(true)} role="button" tabIndex={0}>
+    <button type="button" className="jma-bubble group" onClick={() => setIsOverlayOpen(true)}>
       <div className="jma-bubble-inner">
         <span className="jma-bubble-eyebrow">
           <Sparkles size={12} /> Vikram&rsquo;s AI
@@ -146,7 +162,26 @@ const JobMatchAnalyzer = ({ onAnalysisComplete, variant = 'card' }) => {
         <span className="jma-bubble-cta">Let&rsquo;s find out <Search size={13} /></span>
       </div>
       <span className="jma-bubble-tail" />
-    </div>
+    </button>
+  );
+
+  // ── Compact desktop dock — keeps the robot's animated face unobstructed ──
+  const dockTrigger = (
+    <button
+      type="button"
+      className="jma-dock group"
+      onClick={() => setIsOverlayOpen(true)}
+      aria-label="Open Vikram's AI job fit analyzer"
+    >
+      <span className="jma-dock-signal" aria-hidden="true">
+        <Sparkles size={15} />
+      </span>
+      <span className="jma-dock-copy">
+        <span className="jma-dock-eyebrow">Vikram&rsquo;s AI</span>
+        <span className="jma-dock-label">Check your role fit</span>
+      </span>
+      <Search size={15} className="jma-dock-search" aria-hidden="true" />
+    </button>
   );
 
   // ── The full-screen overlay (portal to body) ──
@@ -388,7 +423,7 @@ const JobMatchAnalyzer = ({ onAnalysisComplete, variant = 'card' }) => {
 
   return (
     <>
-      {variant === 'bubble' ? bubbleTrigger : heroCard}
+      {variant === 'bubble' ? bubbleTrigger : variant === 'dock' ? dockTrigger : heroCard}
       {/* Portal the overlay to document.body so it's above everything */}
       {ReactDOM.createPortal(overlay, document.body)}
     </>

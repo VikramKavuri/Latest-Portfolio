@@ -357,14 +357,14 @@ export default function HeroScene({ onOpenBook, onWarmBook }) {
             </div>
           )}
 
-          {/* Robot conversation bubble — looks like the 3D model is speaking */}
+          {/* Compact AI dock — available without covering the robot's animated face */}
           <div
-            className={`hero-desktop-ai-bubble hidden md:block absolute top-[20%] left-[2%] lg:left-[4%] w-[16rem] lg:w-[18rem] z-20 transition-all duration-700 delay-[1400ms] ${
+            className={`hero-desktop-ai-dock hidden md:block absolute bottom-[5%] right-[3%] w-[13.5rem] lg:w-[15rem] z-20 transition-all duration-700 delay-[1400ms] ${
               contentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
             <Suspense fallback={null}>
-              <JobMatchAnalyzer variant="bubble" />
+              <JobMatchAnalyzer variant="dock" />
             </Suspense>
           </div>
 
