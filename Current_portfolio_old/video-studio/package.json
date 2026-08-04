@@ -1,0 +1,21 @@
+{
+  "name": "portfolio-video-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.jsx",
+    "render:hipaa": "remotion render src/index.jsx HipaaSafeHook ../frontend/public/project-videos/hipaa-safe-form-extraction.mp4 --codec h264 --crf 20",
+    "render:graphrag": "remotion render src/index.jsx GraphRagHook ../frontend/public/project-videos/healthcare-graphrag.mp4 --codec h264 --crf 20",
+    "render:lakehouse": "remotion render src/index.jsx LakehouseHook ../frontend/public/project-videos/healthcare-interoperability-lakehouse.mp4 --codec h264 --crf 18 --scale=1.5",
+    "render:jobsearch": "remotion render src/index.jsx JobSearchMcpHook ../frontend/public/project-videos/job-search-dossier-mcp.mp4 --codec h264 --crf 18 --scale=1.5",
+    "render:atliq": "remotion render src/index.jsx AtliqSalesHook ../frontend/public/project-videos/atliq-sales-analysis.mp4 --codec h264 --crf 18 --scale=1.5",
+    "render:cpu": "remotion render src/index.jsx CpuMonitorHook ../frontend/public/project-videos/power-bi-realtime-cpu-monitoring.mp4 --codec h264 --crf 18 --scale=1.5",
+    "render:n8n": "remotion render src/index.jsx N8nOutreachHook ../frontend/public/project-videos/n8n-job-outreach-ops.mp4 --codec h264 --crf 18 --scale=1.5",
+    "render:telco": "remotion render src/index.jsx TelcoChurnHook ../frontend/public/project-videos/telco-customer-churn-predictor.mp4 --codec h264 --crf 18 --scale=1.5",
+    "render:voiceflow": "remotion render src/index.jsx VoiceFlowHook ../frontend/public/project-videos/voiceflow.mp4 --codec h264 --crf 18 --scale=1.5"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0"
+  }
+}

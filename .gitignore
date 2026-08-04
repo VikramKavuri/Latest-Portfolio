@@ -1,0 +1,6 @@
+# Local credentials and machine-generated runtime output
+**/.env
+**/.env.*
+!**/.env.example
+**/*.log
+
